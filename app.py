@@ -10,7 +10,7 @@ app.config['SECRET_KEY'] = 'top-secret'
 
 class MyForm(FlaskForm):
     book = StringField('Book name:', validators=[DataRequired()])
-    submit = SubmitField('Recommend!')
+    submit = SubmitField('Recommend me a book')
 
 @app.route("/")
 def home():
