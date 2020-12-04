@@ -1,11 +1,10 @@
-romanzdk: &romanzdk
-  docker:
-    - image: circleci/python
+docker:
+  - image: circleci/python
 
 version: 2.1
 jobs:
   build:
-    <<: *romanzdk
+    executor: python/default
     steps:
       - checkout
       - run: pip install -r /recommender/requirements.txt
@@ -15,7 +14,6 @@ jobs:
             - .
 
 workflows:
-  version: 2.1
-  build:
+  main:
     jobs:
       - build
