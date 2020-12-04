@@ -29,3 +29,7 @@ def recommend():
             flash(book, 'year')
         
     return render_template('recommend.html', form=form)
+
+if __name__ == "__main__":
+    app.run(port=5000)
+    app.debug = DEBUG
