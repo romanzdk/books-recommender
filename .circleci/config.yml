@@ -8,7 +8,7 @@ jobs:
     <<: *romanzdk
     steps:
       - checkout
-      - run: pip install -r /recommender/requirements.txt
+      - run: pip install -r requirements.txt
       - persist_to_workspace:
          root: .
          paths:
