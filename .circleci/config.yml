@@ -5,16 +5,17 @@ romanzdk: &romanzdk
 version: 2.1
 jobs:
   build:
-  <<: *romanzdk
-  steps:
-    - checkout
-    - run: pip install -r /recommender/requirements.txt
-    - persist_to_workspace:
-        root: .
-        paths:
-          - .
+    <<: *romanzdk
+    steps:
+      - checkout
+      - run: pip install -r /recommender/requirements.txt
+      - persist_to_workspace:
+         root: .
+         paths:
+            - .
 
 workflows:
+  version: 2.1
   build:
     jobs:
       - build
