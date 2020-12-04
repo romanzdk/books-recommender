@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_pickle('data/out')
+df = pd.read_excel('data/out.xlsx')
 
 def get_similar(book_name):
     books = (
