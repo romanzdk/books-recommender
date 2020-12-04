@@ -6,7 +6,6 @@ from processing import get_similar
 
 DEBUG = True
 app = Flask(__name__)
-app.config.from_object(__name__)
 app.config['SECRET_KEY'] = 'top-secret'
 
 class MyForm(FlaskForm):
@@ -30,7 +29,3 @@ def recommend():
             flash(book, 'year')
         
     return render_template('recommend.html', form=form)
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
-    app.debug = DEBUG
