@@ -14,9 +14,12 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-bg navbar-custom">
+    <nav class="navbar navbar-expand-md navbar-bg navbar-custom">
         <a class="navbar-brand" href="/">Book recommender</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link {% block home %}{% endblock home %}" href="/">Home</a>
@@ -32,13 +35,8 @@
     </nav>
 
     {% block content %}{% endblock content %}
-
-    <footer class="footer">
-        <div class="container">
-            <span class="text-muted">2020, <a href="romanzdk.com">Roman Zydyk</a></span>
-        </div>
-    </footer>
-    </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 </html>
