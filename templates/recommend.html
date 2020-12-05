@@ -29,6 +29,8 @@
         <li>{{ book }}</li>
         {% endfor %}
     </ul>
+    {% endif %} {% endwith %} {% with no_book = get_flashed_messages(category_filter=['no_book']) %} {% if no_book %}
+    <p>We did not find any corresponding books :(</p>
     {% endif %} {% endwith %}
 
 </div>
