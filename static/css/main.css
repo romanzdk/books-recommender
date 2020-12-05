@@ -1,0 +1,29 @@
+.navbar-bg {
+    background-color: #122450;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: white;
+}
+
+a {
+    color: #fe7f04
+}
+
+a.nav-link {
+    color: white
+}
+
+a.nav-link:hover {
+    color: #00a1ff
+}
+
+a.active-link {
+    color: #fe7f04
+}
+
+.submit-btn {
+    background-color: #fe7f04;
+    color: white;
+}
