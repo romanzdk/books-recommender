@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('data/out.csv')
+df = pd.read_csv('data/out.csv', sep=';')
 
 def get_similar(book_name):
     
