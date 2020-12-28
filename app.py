@@ -22,15 +22,13 @@ def recommend():
 
     if request.method == 'POST':
         res = get_similar(form.book.data)
-        if len(res['Author books']) > 0:
-            for book in res['Author books']:
-                flash(book, 'author')
-        else:
-            flash("Sorry, there are no corresponding books", 'no_book')
-        
-        if len(res['Year books']) > 0:
-            for book in res['Year books']:
-                flash(book, 'year')
+        for key in res.keys():
+            flash(key, 'wanted_book')
+            if len(res[key]) > 0:
+                for book in res[key]:
+                    flash(book, 'recommendation')
+            else:
+                flash("Sorry, there are no corresponding books", 'no_book')
         
     return render_template('recommend.html', form=form)
 
