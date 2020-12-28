@@ -1,36 +1,37 @@
 import pandas as pd
 
-df = pd.read_csv('data/out.csv', sep=';')
+ratings = pd.read_csv('data/ratings.csv')
+books = pd.read_csv('data/books.csv')
 
 def get_similar(book_name):
     
-    author_books = []
-    year_books = []
+    recommendation = {}
+    title = book_name
 
-    # get all books with the corresponding name
-    books = (
-        df[df['title'].str.contains(book_name.lower())]
-        .sort_values('rating_cnt', ascending = False)
-    )
+    # get my book
+    b = (
+        books[books['Book-Title'].str.contains(book_name.lower())]
+        .sort_values('Users_rated', ascending=False)
+        )
+    
+    # book isbn and title
+    if b.shape[0] > 0:
+        isbn = b.iloc[0,0]
+        title = b.iloc[0,2]
 
-    if books.shape[0] > 0:
-        # get books of the same author
-        author = books.iloc[0,0]
-        author_books = (
-            df[df['author'] == author]
-            .sort_values('rating_avg', ascending = False)[:5]['title']
-            .to_list()
+        # users who liked my book
+        users = ratings.query(f"`ISBN` == '{isbn}' and `Book-Rating` > 8")['User-ID']
+
+        # books the users also liked
+        user_books = (
+            ratings
+            .merge(users, on = 'User-ID')
+            .groupby('ISBN')
+            .agg({'Book-Rating':'mean', 'Number of book ratings':'min'})
+            .sort_values(['Book-Rating', 'Number of book ratings'], ascending=False)
+            .reset_index()['ISBN'][:5]
         )
 
-        # get books within the year range
-        year = books.iloc[0,2]
-        year_range = 5
-        year_books = (
-            df[(df['year'] <= (year + year_range)) & (df['year'] >= (year - year_range))]
-            .sort_values('rating_avg', ascending = False)[:5]['title']
-            .to_list()
-        )
-    return {
-        'Author books':author_books,
-        'Year books':year_books
-    }
+        recommendation = books[books['ISBN'].isin(user_books)][['Book-Title', 'Book-Author']].to_dict('records')
+    
+    return {title:recommendation}
